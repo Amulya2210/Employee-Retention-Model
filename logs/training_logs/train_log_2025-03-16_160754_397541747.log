@@ -1,0 +1,87 @@
+2025-03-16 16:07:54,894 : INFO : Start of Training
+2025-03-16 16:07:54,895 : INFO : Run_id:2025-03-16_160754_397541747
+2025-03-16 16:07:54,895 : INFO : Start of Data Load, validation and transformation
+2025-03-16 16:07:54,895 : INFO : Start of Archiving Old Rejected Files...
+2025-03-16 16:07:54,896 : INFO : End of Archiving Old Rejected Files...
+2025-03-16 16:07:54,896 : INFO : Start of Archiving Old Validated Files...
+2025-03-16 16:07:54,896 : INFO : End of Archiving Old Validated Files...
+2025-03-16 16:07:54,896 : INFO : Start of Archiving Old Processed Files...
+2025-03-16 16:07:54,897 : INFO : End of Archiving Old Processed Files...
+2025-03-16 16:07:54,898 : INFO : Start of Archiving Old Result Files...
+2025-03-16 16:07:54,898 : INFO : End of Archiving Old Result Files...
+2025-03-16 16:07:54,898 : INFO : Start of Reading values From Schema...
+2025-03-16 16:07:54,899 : INFO : End of Reading values From Schema...
+2025-03-16 16:07:54,899 : INFO : Start of Validating Column Length...
+2025-03-16 16:07:54,920 : INFO : End of Validating Column Length...
+2025-03-16 16:07:54,920 : INFO : Start of Validating Missing Values...
+2025-03-16 16:07:54,943 : INFO : End of Validating Missing Values...
+2025-03-16 16:07:54,944 : INFO : Start of Replacing Missing Values with NULL...
+2025-03-16 16:07:55,043 : INFO : hr_employee_churn_data.csv: File Transformed successfully!!
+2025-03-16 16:07:55,043 : INFO : End of Replacing Missing Values with NULL...
+2025-03-16 16:07:55,044 : INFO : Start of Creating Table...
+2025-03-16 16:07:55,045 : INFO : Opened training database successfully
+2025-03-16 16:07:55,046 : INFO : Tables created successfully
+2025-03-16 16:07:55,046 : INFO : Closed training database successfully
+2025-03-16 16:07:55,046 : INFO : End of Creating Table...
+2025-03-16 16:07:55,047 : INFO : Opened training database successfully
+2025-03-16 16:07:55,047 : INFO : Start of Inserting Data into Table...
+2025-03-16 16:08:21,470 : ERROR : Exception raised while Inserting Data into Table: database is locked 
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\database\database_operation.py", line 135, in insert_data
+    conn.execute("INSERT INTO "+table_name+" values ({values})".format(values=(to_db)))
+sqlite3.OperationalError: database is locked
+2025-03-16 16:08:21,477 : ERROR : Unsuccessful End of Data Load, validation and transformation
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\database\database_operation.py", line 135, in insert_data
+    conn.execute("INSERT INTO "+table_name+" values ({values})".format(values=(to_db)))
+sqlite3.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KIIT\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 825, in move
+    os.rename(src, real_dst)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'data/training_data/hr_employee_churn_data.csv' -> 'data/training_data_rejects'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\ingestion\load_validate.py", line 296, in validate_trainset
+    self.dbOperation.insert_data('training','training_raw_data_t')
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\database\database_operation.py", line 141, in insert_data
+    shutil.move(good_data_path+'/' + file, bad_data_path)
+  File "C:\Users\KIIT\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 846, in move
+    os.unlink(src)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'data/training_data/hr_employee_churn_data.csv'
+2025-03-16 16:08:21,480 : ERROR : Unsuccessful End of Training
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\database\database_operation.py", line 135, in insert_data
+    conn.execute("INSERT INTO "+table_name+" values ({values})".format(values=(to_db)))
+sqlite3.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KIIT\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 825, in move
+    os.rename(src, real_dst)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'data/training_data/hr_employee_churn_data.csv' -> 'data/training_data_rejects'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\ingestion\load_validate.py", line 296, in validate_trainset
+    self.dbOperation.insert_data('training','training_raw_data_t')
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\database\database_operation.py", line 141, in insert_data
+    shutil.move(good_data_path+'/' + file, bad_data_path)
+  File "C:\Users\KIIT\AppData\Local\Programs\Python\Python311\Lib\shutil.py", line 846, in move
+    os.unlink(src)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'data/training_data/hr_employee_churn_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\training\train_model.py", line 59, in training_model
+    self.loadValidate.validate_trainset()
+  File "C:\Users\KIIT\PycharmProjects\PythonProject\apps\ingestion\load_validate.py", line 304, in validate_trainset
+    raise Exception
+Exception

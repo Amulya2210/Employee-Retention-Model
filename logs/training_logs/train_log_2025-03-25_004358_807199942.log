@@ -1,0 +1,59 @@
+2025-03-25 00:43:58,779 : INFO : Start of Training
+2025-03-25 00:43:58,780 : INFO : Run_id:2025-03-25_004358_807199942
+2025-03-25 00:43:58,780 : INFO : Start of Data Load, validation and transformation
+2025-03-25 00:43:58,780 : INFO : Start of Archiving Old Rejected Files...
+2025-03-25 00:43:58,780 : INFO : End of Archiving Old Rejected Files...
+2025-03-25 00:43:58,781 : INFO : Start of Archiving Old Validated Files...
+2025-03-25 00:43:58,781 : INFO : End of Archiving Old Validated Files...
+2025-03-25 00:43:58,781 : INFO : Start of Archiving Old Processed Files...
+2025-03-25 00:43:58,781 : INFO : End of Archiving Old Processed Files...
+2025-03-25 00:43:58,781 : INFO : Start of Archiving Old Result Files...
+2025-03-25 00:43:58,782 : INFO : End of Archiving Old Result Files...
+2025-03-25 00:43:58,782 : INFO : Start of Reading values From Schema...
+2025-03-25 00:43:58,782 : INFO : End of Reading values From Schema...
+2025-03-25 00:43:58,782 : INFO : Start of Validating Column Length...
+2025-03-25 00:43:58,782 : ERROR : OSError raised while Validating Column Length
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'data/training_data'
+2025-03-25 00:43:58,783 : ERROR : Unsuccessful End of Data Load, validation and transformation
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'data/training_data'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 184, in validate_trainset
+    self.validate_column_length(number_of_columns)
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 52, in validate_column_length
+    raise OSError
+OSError
+2025-03-25 00:43:58,784 : ERROR : Unsuccessful End of Training
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'data/training_data'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 184, in validate_trainset
+    self.validate_column_length(number_of_columns)
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 52, in validate_column_length
+    raise OSError
+OSError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\training\train_model.py", line 27, in training_model
+    self.loadValidate.validate_trainset()
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 200, in validate_trainset
+    raise Exception
+Exception

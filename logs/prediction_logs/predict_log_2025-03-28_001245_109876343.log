@@ -1,0 +1,34 @@
+2025-03-28 00:12:45,230 : INFO : Start of Prediction
+2025-03-28 00:12:45,231 : INFO : run_id:2025-03-28_001245_109876343
+2025-03-28 00:12:45,231 : INFO : Start of Preprocessing...
+2025-03-28 00:12:45,231 : INFO : Start of feature encoding...
+2025-03-28 00:12:45,233 : INFO : End of feature encoding...
+2025-03-28 00:12:45,234 : INFO : Start of Droping Columns...
+2025-03-28 00:12:45,234 : INFO : End of Droping Columns...
+2025-03-28 00:12:45,234 : INFO : Start of finding missing values...
+2025-03-28 00:12:45,235 : INFO : End of finding missing values...
+2025-03-28 00:12:45,235 : INFO : Start of building final predictset...
+2025-03-28 00:12:45,246 : INFO : End of building final predictset...
+2025-03-28 00:12:45,252 : INFO : End of Preprocessing...
+2025-03-28 00:12:45,252 : INFO : Start of Load Model
+2025-03-28 00:12:45,253 : INFO : Model File KMeans loaded
+2025-03-28 00:12:45,253 : INFO : End of Load Model
+2025-03-28 00:12:45,262 : INFO : clusters loop started
+2025-03-28 00:12:45,265 : INFO : Start of finding correct model
+2025-03-28 00:12:45,267 : INFO : Exception raised while finding correct model'FileOperation' object has no attribute 'model_name'
+2025-03-28 00:12:45,267 : ERROR : Unsuccessful End of Prediction
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\core\file_operation.py", line 56, in correct_model
+    self.model_name=self.model_name.split('.')[0]
+                    ^^^^^^^^^^^^^^^
+AttributeError: 'FileOperation' object has no attribute 'model_name'. Did you mean: 'folder_name'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\prediction\predict_model.py", line 65, in single_predict_from_model
+    model_name = self.fileOperation.correct_model(i)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Major Project\Employee_Retention_ML-main\apps\core\file_operation.py", line 61, in correct_model
+    raise Exception()
+Exception

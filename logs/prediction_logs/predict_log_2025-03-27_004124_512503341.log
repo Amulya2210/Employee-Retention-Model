@@ -1,0 +1,59 @@
+2025-03-27 00:41:24,943 : INFO : Start of Prediction
+2025-03-27 00:41:24,944 : INFO : run_id:2025-03-27_004124_512503341
+2025-03-27 00:41:24,944 : INFO : Start of Data Load, validation and transformation
+2025-03-27 00:41:24,944 : INFO : Start of Archiving Old Rejected Files...
+2025-03-27 00:41:24,944 : INFO : End of Archiving Old Rejected Files...
+2025-03-27 00:41:24,944 : INFO : Start of Archiving Old Validated Files...
+2025-03-27 00:41:24,945 : INFO : End of Archiving Old Validated Files...
+2025-03-27 00:41:24,945 : INFO : Start of Archiving Old Processed Files...
+2025-03-27 00:41:24,945 : INFO : End of Archiving Old Processed Files...
+2025-03-27 00:41:24,945 : INFO : Start of Archiving Old Result Files...
+2025-03-27 00:41:24,945 : INFO : End of Archiving Old Result Files...
+2025-03-27 00:41:24,945 : INFO : Start of Reading values From Schema...
+2025-03-27 00:41:24,946 : INFO : End of Reading values From Schema...
+2025-03-27 00:41:24,946 : INFO : Start of Validating Column Length...
+2025-03-27 00:41:24,946 : ERROR : OSError raised while Validating Column Length
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+NotADirectoryError: [WinError 267] The directory name is invalid: 'data/prediction_data\\batch_predict_2025-03-27_004124_512503341.csv'
+2025-03-27 00:41:24,946 : ERROR : Unsuccessful End of Data Load, validation and transformation
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+NotADirectoryError: [WinError 267] The directory name is invalid: 'data/prediction_data\\batch_predict_2025-03-27_004124_512503341.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 210, in validate_predictset
+    self.validate_column_length(number_of_columns)
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 52, in validate_column_length
+    raise OSError
+OSError
+2025-03-27 00:41:24,948 : ERROR : Unsuccessful End of Prediction
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 41, in validate_column_length
+    for file in listdir(self.data_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+NotADirectoryError: [WinError 267] The directory name is invalid: 'data/prediction_data\\batch_predict_2025-03-27_004124_512503341.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 210, in validate_predictset
+    self.validate_column_length(number_of_columns)
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 52, in validate_column_length
+    raise OSError
+OSError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Major Project\Employee_Retention_ML-main\apps\prediction\predict_model.py", line 21, in batch_predict_from_model
+    self.loadValidate.validate_predictset()
+  File "D:\Major Project\Employee_Retention_ML-main\apps\ingestion\load_validate.py", line 226, in validate_predictset
+    raise Exception
+Exception

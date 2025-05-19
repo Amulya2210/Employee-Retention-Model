@@ -1,0 +1,5 @@
+satisfaction_level,last_evaluation,number_project,average_montly_hours,time_spend_company,work_accident,promotion_last_5years,salary,left
+0.75,0.85,5,180,3,0,0,medium,0
+0.45,0.65,3,160,2,0,0,low,1
+0.89,0.92,4,175,4,0,1,high,0
+0.55,0.75,4,190,3,1,0,medium,1

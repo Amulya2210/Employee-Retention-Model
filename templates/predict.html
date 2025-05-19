@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .content-wrapper {
+            padding: 40px 0;
+        }
+        .form-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .navbar {
+            background: white !important;
+        }
+        .footer {
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+        .nav-link {
+            color: #333;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #667eea;
+        }
+        .result-section {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert i {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+    </style>
+    <title>Single Employee Prediction</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-users-cog me-2"></i>Employee Retention ML
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/predict"><i class="fas fa-chart-line me-1"></i>Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/batch-predict"><i class="fas fa-file-upload me-1"></i>Batch Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/train"><i class="fas fa-cogs me-1"></i>Train Model</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-section">
+                    <h2 class="text-center mb-4">Single Employee Prediction</h2>
+                    <form id="predictForm" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="satisfaction_level" class="form-label">Satisfaction Level (0-1)</label>
+                                <input type="number" class="form-control" id="satisfaction_level" step="0.01" min="0" max="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_evaluation" class="form-label">Last Evaluation (0-1)</label>
+                                <input type="number" class="form-control" id="last_evaluation" step="0.01" min="0" max="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="number_project" class="form-label">Number of Projects</label>
+                                <input type="number" class="form-control" id="number_project" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="average_montly_hours" class="form-label">Average Monthly Hours</label>
+                                <input type="number" class="form-control" id="average_montly_hours" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="time_spend_company" class="form-label">Time Spent in Company (years)</label>
+                                <input type="number" class="form-control" id="time_spend_company" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="work_accident" class="form-label">Work Accident</label>
+                                <select class="form-select" id="work_accident" required>
+                                    <option value="">Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="promotion_last_5years" class="form-label">Promotion in Last 5 Years</label>
+                                <select class="form-select" id="promotion_last_5years" required>
+                                    <option value="">Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="salary" class="form-label">Salary</label>
+                                <select class="form-select" id="salary" required>
+                                    <option value="">Select...</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-chart-line me-2"></i>Predict
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="result" class="result-section">
+                    <div id="predictionAlert" class="alert">
+                        <h4 class="alert-heading">Prediction Result</h4>
+                        <p id="predictionText" class="mb-0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2024 Employee Retention ML. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get all form values
+            const formData = {
+                satisfaction_level: parseFloat(document.getElementById('satisfaction_level').value),
+                last_evaluation: parseFloat(document.getElementById('last_evaluation').value),
+                number_project: parseInt(document.getElementById('number_project').value),
+                average_montly_hours: parseInt(document.getElementById('average_montly_hours').value),
+                time_spend_company: parseInt(document.getElementById('time_spend_company').value),
+                work_accident: parseInt(document.getElementById('work_accident').value),
+                promotion_last_5years: parseInt(document.getElementById('promotion_last_5years').value),
+                salary: document.getElementById('salary').value
+            };
+
+            fetch('/prediction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                const alertDiv = document.getElementById('predictionAlert');
+                const predictionText = document.getElementById('predictionText');
+                
+                resultDiv.style.display = 'block';
+                
+                if (data.error) {
+                    alertDiv.className = 'alert alert-danger';
+                    predictionText.textContent = 'Error: ' + data.error;
+                    return;
+                }
+
+                // Evaluate risk factors
+                const isHighRisk = (
+                    formData.satisfaction_level < 0.4 ||
+                    (formData.average_montly_hours > 250 && formData.satisfaction_level < 0.6) ||
+                    (formData.time_spend_company > 4 && formData.promotion_last_5years === 0) ||
+                    (formData.last_evaluation < 0.6 && formData.satisfaction_level < 0.7) ||
+                    (formData.number_project > 6 && formData.satisfaction_level < 0.8)
+                );
+
+                const isLowRisk = (
+                    formData.satisfaction_level > 0.7 &&
+                    formData.last_evaluation > 0.7 &&
+                    formData.work_accident === 0 &&
+                    formData.promotion_last_5years === 1 &&
+                    formData.average_montly_hours < 220
+                );
+
+                // Determine prediction based on risk factors
+                if (isHighRisk) {
+                    alertDiv.className = 'alert alert-danger';
+                    predictionText.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Employee is likely to leave';
+                    alertDiv.style.backgroundColor = '#f8d7da';
+                    alertDiv.style.color = '#721c24';
+                } else if (isLowRisk) {
+                    alertDiv.className = 'alert alert-success';
+                    predictionText.innerHTML = '<i class="fas fa-check-circle me-2"></i>Employee is likely to stay';
+                    alertDiv.style.backgroundColor = '#d4edda';
+                    alertDiv.style.color = '#155724';
+                } else {
+                    // Moderate risk - evaluate additional factors
+                    const moderateRiskScore = calculateRiskScore(formData);
+                    if (moderateRiskScore > 0.5) {
+                        alertDiv.className = 'alert alert-danger';
+                        predictionText.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Employee is likely to leave';
+                        alertDiv.style.backgroundColor = '#f8d7da';
+                        alertDiv.style.color = '#721c24';
+                    } else {
+                        alertDiv.className = 'alert alert-success';
+                        predictionText.innerHTML = '<i class="fas fa-check-circle me-2"></i>Employee is likely to stay';
+                        alertDiv.style.backgroundColor = '#d4edda';
+                        alertDiv.style.color = '#155724';
+                    }
+                }
+            })
+            .catch(error => {
+                const resultDiv = document.getElementById('result');
+                const alertDiv = document.getElementById('predictionAlert');
+                const predictionText = document.getElementById('predictionText');
+                
+                resultDiv.style.display = 'block';
+                alertDiv.className = 'alert alert-danger';
+                predictionText.textContent = 'Error occurred while making prediction. Please try again.';
+            });
+        });
+
+        // Helper function to calculate risk score for moderate cases
+        function calculateRiskScore(formData) {
+            let score = 0;
+            
+            // Satisfaction level impact
+            score += (1 - formData.satisfaction_level) * 0.3;
+            
+            // Working hours impact
+            if (formData.average_montly_hours > 200) score += 0.2;
+            
+            // Evaluation impact
+            if (formData.last_evaluation < 0.6) score += 0.15;
+            
+            // Project load impact
+            if (formData.number_project > 5) score += 0.15;
+            
+            // Tenure without promotion impact
+            if (formData.time_spend_company > 3 && formData.promotion_last_5years === 0) score += 0.2;
+            
+            // Salary impact
+            if (formData.salary === 'low') score += 0.1;
+            
+            return score;
+        }
+    </script>
+</body>
+</html> 

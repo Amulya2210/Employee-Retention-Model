@@ -1,0 +1,14 @@
+Flask==3.0.2  # Flask framework
+Flask-Cors==4.0.0  # A Flask extension for handling Cross Origin Resource Sharing (CORS)
+matplotlib==3.8.2  # Matplotlib for data visualization
+numpy==1.26.4  # Numerical computing library
+pandas==2.2.0  # Data analysis and manipulation library
+scikit-learn==1.4.1.post1  # Machine learning library
+kneed==0.8.5  # Elbow plot detection
+xgboost==2.0.3  # XGBoost for gradient boosting models
+Flask-MonitoringDashboard==3.5.0  # Flask app monitoring dashboard
+Jinja2==3.1.3  # Template engine for Flask
+Werkzeug==3.0.2  # WSGI toolkit for Flask
+itsdangerous==2.1.2  # Data security library for Flask
+certifi==2024.2.2  # SSL certificates for HTTPS requests
+MarkupSafe==2.1.5  # Protects against HTML and XML injection
